@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: head"></head>
+
+<body>
+    <header th:replace="fragments/header :: header"></header>
+
+    <div class="container">
+        <h1 class="text-center m-4">Formulario</h1>
+
+        <form action="#" th:action="@{/}" th:object="${userCommand}" method="post" >
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="email">Email</label>
+                        <input type="text" th:field="*{email}" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email">
+                        <small id="emailHelp" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="form-text text-muted">Email Error
+							.</small>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="ager">Edad</label>
+                        <input type="number" th:field="*{age}" class="form-control" id="age" aria-describedby="ageHelp" placeholder="Edad">
+                        <small id="ageHelp" th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="form-text text-muted">Edad Error
+							with anyone else.</small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" th:field="*{name}" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Nombre">
+                <small id="nameHelp" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="form-text text-muted">Nombre Error
+					.</small>
+            </div>
+            <div class="form-group">
+                <label for="lastNames">Apellidos</label>
+                <input type="text" th:field="*{lastNames}" class="form-control" id="lastNames" aria-describedby="lastNamesHelp" placeholder="Apellidos">
+                <small id="lastNamesHelp" th:if="${#fields.hasErrors('lastNames')}" th:errors="*{lastNames}" class="form-text text-muted">Apellidos
+					Error.</small>
+            </div>
+            <div class="form-group">
+                <label for="description">Descripción</label>
+                <textarea th:field="*{description}" class="form-control" id="description" rows="3"></textarea>
+                <small id="descriptionHelp" th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="form-text text-muted">
+					Descripción Error</small>
+            </div>
+            <div class="form-group">
+                <h6>Genero</h6>
+                <div class="form-check ">
+                    <input class="form-check-input" type="radio" th:field="*{gender}" name="genderRadios" id="genderRadio1" value="Female" checked>
+                    <label class="form-check-label" for="genderRadio1"> Femenino </label>
+                    <small th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="form-text text-muted">Sexo Error</small>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" th:field="*{gender}" name="genderRadioss" id="genderRadio2" value="Male">
+                    <label class="form-check-label" for="sexRadio2"> Masculino</label>
+                    <small th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}" class="form-text text-muted">Sexo Error</small>
+
+                </div>
+            </div>
+            </hr>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+        <div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
+        <div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
+    </div>
+
+    <footer th:replace="fragments/footer :: footer"></footer>
+</body>
+
+</html>
